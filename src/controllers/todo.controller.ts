@@ -18,17 +18,9 @@ export const getTodoById = async (req: Request, res: Response, next: NextFunctio
 
     try {
         const todo = await TodoModel.findById<Itodos>(id);
-
-        if (!todo) {
-            throw new CustomError({
-                message: "Todo not found",
-                statusCode: StatusCodes.NOT_FOUND,
-            });
-        }
-
         const updatedTodo = await TodoModel.findByIdAndUpdate<Itodos>(
             id,
-            { $set: { Isdone: !todo.IsDone } },
+            { $set: { IsDone: !todo?.IsDone } },
             { new: true }
         );
 
