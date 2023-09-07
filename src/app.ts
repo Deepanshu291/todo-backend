@@ -30,7 +30,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Server working build by TypeScript 🔥");
 });
 
-app.use("/docs", swaggerui.serve, swaggerui.setup(SwaggerSpecs))
+app.use("/api-docs", swaggerui.serve, swaggerui.setup(SwaggerSpecs))
 app.use("/api", todoRouter)
 
 app.use(notFound)
