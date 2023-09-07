@@ -4,7 +4,6 @@ import { CustomError } from "../utils/helpers/error.helper";
 import { StatusCodes } from "http-status-codes";
 import { Itodos } from "../../@types/todo.model";
 
-// Get all todos
 export const getTodo = async (req: Request, res: Response) => {
     
         const todos = await TodoModel.find<Itodos>();
@@ -12,7 +11,6 @@ export const getTodo = async (req: Request, res: Response) => {
     
 }
 
-// Get todo by id and toggle Isdone field
 export const getTodoById = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
 
@@ -30,7 +28,6 @@ export const getTodoById = async (req: Request, res: Response, next: NextFunctio
     }
 }
 
-// Add new todo controller
 export const addTodo = async (req: Request, res: Response, next: NextFunction) => {
     const todo = new TodoModel<Itodos>(req.body);
 
@@ -44,7 +41,6 @@ export const addTodo = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
-// Update todo controller
 export const updateTodo = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const { todo } = req.body;
@@ -62,7 +58,7 @@ export const updateTodo = async (req: Request, res: Response, next: NextFunction
     }
 }
 
-// Delete todo controller
+
 export const deleteTodo = async (req: Request, res: Response,next:NextFunction) => {
     const id = req.params.id;
 

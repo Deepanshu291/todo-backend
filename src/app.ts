@@ -6,6 +6,10 @@ import {config} from 'dotenv'
 import { ConnectDB } from './utils/database'
 import { errorHandler, notFound } from './middleware/error.middle'
 import { todoRouter } from './routes/todo.route'
+import swaggerui from 'swagger-ui-express'
+import { SwaggerSpecs } from './utils/swaggerdocs'
+
+
 
 config()
 const app:Express = express()
@@ -26,11 +30,14 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Server working build by TypeScript 🔥");
 });
 
+app.use("/docs", swaggerui.serve, swaggerui.setup(SwaggerSpecs))
 app.use("/api", todoRouter)
 
 app.use(notFound)
     .use(errorHandler)
 
 const port = process.env.PORT || 8000
+
+
 
 app.listen(port, ()=> console.log(`Server running on port ${port} 🔥`))
